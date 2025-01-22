@@ -27,7 +27,7 @@ public class UserController {
         }
 
         userRepository.save(DataMapper.toUser(userDTO));
-        model.addAttribute("message", "User added successfully");
+        model.addAttribute("message", "Пользователь добавлен");
         model.addAttribute("success", true);
         return "/admin/addUser";
     }
