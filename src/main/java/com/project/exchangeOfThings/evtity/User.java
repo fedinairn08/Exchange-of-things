@@ -1,7 +1,9 @@
 package com.project.exchangeOfThings.evtity;
 
+import com.project.exchangeOfThings.enums.Roles;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,15 +20,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank
     private String name;
 
-    @NotBlank(message = "Surname is mandatory")
+    @NotBlank
     private String surname;
 
-    @NotBlank(message = "Login is mandatory")
+    @NotBlank
     private String login;
 
-    @NotBlank(message = "Password is mandatory")
+    @NotBlank
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private Roles role;
 }

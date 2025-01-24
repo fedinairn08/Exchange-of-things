@@ -2,9 +2,11 @@ package com.project.exchangeOfThings.utils;
 
 import com.project.exchangeOfThings.dto.ThingDTO;
 import com.project.exchangeOfThings.dto.UserDTO;
+import com.project.exchangeOfThings.enums.Roles;
 import com.project.exchangeOfThings.enums.ThingStatus;
 import com.project.exchangeOfThings.evtity.Thing;
 import com.project.exchangeOfThings.evtity.User;
+import org.springframework.context.support.BeanDefinitionDsl;
 
 public class DataMapper {
     public static User toUser(UserDTO userDTO) {
@@ -12,7 +14,8 @@ public class DataMapper {
                         userDTO.getName(),
                         userDTO.getSurname(),
                         userDTO.getLogin(),
-                        userDTO.getPassword());
+                        userDTO.getPassword(),
+                        Roles.valueOf(String.valueOf(userDTO.getRole())));
     }
 
     public static Thing toThing(ThingDTO thingDTO) {

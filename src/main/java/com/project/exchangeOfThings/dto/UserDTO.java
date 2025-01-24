@@ -1,9 +1,9 @@
 package com.project.exchangeOfThings.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.project.exchangeOfThings.enums.Roles;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +27,7 @@ public class UserDTO {
     @NotBlank(message = "Password is mandatory")
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @NotNull
+    private Roles role;
 }
