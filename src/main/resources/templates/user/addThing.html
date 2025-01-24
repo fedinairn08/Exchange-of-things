@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Добавление вещи</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-
+<form th:action="@{/user/addThing}" method="POST" th:object="${thingDTO}">
+    <div class="container">
+        <div class="form-group">
+            <label for="add-thing-name">Название</label>
+            <input type="text" name="name" class="form-control" id="add-thing-name" placeholder="Название вещи..">
+        </div>
+        <div class="form-group">
+            <label for="add-thing-description">Описание</label>
+            <input type="text" name="description" class="form-control" id="add-thing-description" placeholder="Описание вещи..">
+        </div>
+        <div class="form-group">
+            <label for="add-thing-photo">Фото</label>
+            <input type="text" name="photo" class="form-control" id="add-thing-photo" placeholder="Ссылка на фото..">
+        </div>
+        <button type="submit" name="add-thing-button" id="add-thing-button">Добавить вещь</button>
+    </div>
+</form>
+<div th:if="${message}" style="margin-top: 10px;" th:style="${success}? 'color: green;' : 'color: red;'">
+    <p th:text="${message}"></p>
+</div>
 </body>
 </html>
+

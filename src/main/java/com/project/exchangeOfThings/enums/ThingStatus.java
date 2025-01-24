@@ -7,4 +7,8 @@ public enum ThingStatus {
     private final String status;
 
     ThingStatus(String status) {this.status = status;}
+
+    public String getRussianName() {
+        return status;
+    }
 }

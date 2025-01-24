@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список вещей</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<h2>Список пользователей</h2>
+<form th:action="@{/user/allThings}" method="GET">
+    <table class="table table-striped" th:if="${not #lists.isEmpty(things)}">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Статус</th>
+            <th>Описание</th>
+            <th>Количество просмотров</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="thing : ${things}">
+            <td th:text="${thing.name}"></td>
+            <td th:text="${thing.thingStatus.russianName}"></td>
+            <td th:text="${thing.description}"></td>
+            <td th:text="${thing.numberOfViews}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <p th:unless="${not #lists.isEmpty(things)}">Вещей нет</p>
+</form>
+</body>
+</html>

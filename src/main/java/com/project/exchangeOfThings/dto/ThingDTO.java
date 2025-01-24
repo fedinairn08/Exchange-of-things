@@ -1,19 +1,14 @@
-package com.project.exchangeOfThings.evtity;
+package com.project.exchangeOfThings.dto;
 
 import com.project.exchangeOfThings.enums.ThingStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
-@Entity
-@AllArgsConstructor
-@NoArgsConstructor
-public class Thing {
+@Setter
+public class ThingDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
