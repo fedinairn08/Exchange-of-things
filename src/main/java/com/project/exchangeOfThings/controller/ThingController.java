@@ -45,7 +45,7 @@ public class ThingController {
     }
 
     @GetMapping("/allThings")
-    public String showAllUsers(ModelMap model) {
+    public String showAllThings(ModelMap model) {
         List<Thing> things = thingRepository.findAll();
         model.addAttribute("things", things);
         return "/user/allThings";

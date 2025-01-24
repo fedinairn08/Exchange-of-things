@@ -26,7 +26,5 @@ public class Thing {
 
     private String description;
 
-    private String linkToPhoto;
-
     private Integer numberOfViews;
 }

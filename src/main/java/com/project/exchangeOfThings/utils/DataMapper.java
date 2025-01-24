@@ -23,7 +23,6 @@ public class DataMapper {
                 ThingStatus.valueOf(String.valueOf(thingDTO.getThingStatus())),
                 thingDTO.getName(),
                 thingDTO.getDescription(),
-                thingDTO.getLinkToPhoto(),
                 thingDTO.getNumberOfViews());
     }
 }

@@ -21,7 +21,5 @@ public class ThingDTO {
 
     private String description;
 
-    private String linkToPhoto;
-
     private Integer numberOfViews;
 }
