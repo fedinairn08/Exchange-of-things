@@ -1,11 +1,9 @@
 package com.project.exchangeOfThings.controller;
 
 import com.project.exchangeOfThings.dto.ThingDTO;
-import com.project.exchangeOfThings.enums.ThingStatus;
 import com.project.exchangeOfThings.evtity.Thing;
-import com.project.exchangeOfThings.evtity.User;
 import com.project.exchangeOfThings.repository.ThingRepository;
-import com.project.exchangeOfThings.utils.DataMapper;
+import com.project.exchangeOfThings.service.ThingService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -23,6 +21,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class ThingController {
     private final ThingRepository thingRepository;
+    private final ThingService thingService;
 
     @GetMapping("/addThing")
     public Object getAddThingPage() {
@@ -37,8 +36,7 @@ public class ThingController {
             return "/user/addThing";
         }
 
-        thingDTO.setThingStatus(ThingStatus.NOT_EXPOSED);
-        thingRepository.save(DataMapper.toThing(thingDTO));
+        thingService.saveThing(thingDTO);
         model.addAttribute("message", "Вещь добавлена");
         model.addAttribute("success", true);
         return "/user/addThing";

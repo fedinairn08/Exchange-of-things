@@ -3,8 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Редактирование пользователя</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 
+<form th:action="@{/admin/editUser}" method="POST" th:object="${user}">
+    <div class="container">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="form-group">
+            <label for="edit-user-name">Имя</label>
+            <input type="text" name="name" class="form-control" id="edit-user-name" placeholder="Ваше имя.."
+                   th:value="*{name}">
+        </div>
+        <div class="form-group">
+            <label for="edit-user-surname">Фамилия</label>
+            <input type="text" name="surname" class="form-control" id="edit-user-surname" placeholder="Ваша фамилия.."
+                   th:value="*{surname}">
+        </div>
+        <div class="form-group">
+            <label for="role-select">Роль</label>
+            <select name="role" class="form-control" id="role-select" required="required">
+                <option value="" disabled>Выберите роль</option>
+                <option th:each="role : ${T(com.project.exchangeOfThings.enums.Roles).values()}"
+                        th:value="${role}"
+                        th:text="${role.russianName}"
+                        th:selected="${role.name() == user.role.name()}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="edit-user-login">Логин</label>
+            <input type="text" name="login" class="form-control" id="edit-user-login" placeholder="Ваш логин.."
+                   th:value="*{login}">
+        </div>
+        <div class="form-group">
+            <label for="edit-user-password">Пароль</label>
+            <input type="password" name="password" class="form-control" id="edit-user-password"
+                   placeholder="Ваш пароль.."  th:value="*{password}">
+        </div>
+        <button type="submit" name="edit-user-button" class="btn btn-primary">Сохранить изменения</button>
+        <a th:href="@{/admin/allUsers}" class="btn btn-default">Отмена</a>
+    </div>
+</form>
+<div th:if="${message}" style="margin-top: 10px;" th:style="${success}? 'color: green;' : 'color: red;'">
+    <p th:text="${message}"></p>
+</div>
 </body>
 </html>

@@ -3,9 +3,10 @@ package com.project.exchangeOfThings.controller;
 import com.project.exchangeOfThings.dto.UserDTO;
 import com.project.exchangeOfThings.evtity.User;
 import com.project.exchangeOfThings.repository.UserRepository;
-import com.project.exchangeOfThings.utils.DataMapper;
+import com.project.exchangeOfThings.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -18,8 +19,9 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/admin")
 public class UserController {
-
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
+    private final UserService userService;
 
     @GetMapping("/addUser")
     public Object getAddUserPage() {
@@ -34,7 +36,7 @@ public class UserController {
             return "/admin/addUser";
         }
 
-        userRepository.save(DataMapper.toUser(userDTO));
+        userRepository.save(modelMapper.map(userDTO, User.class));
         model.addAttribute("message", "Пользователь добавлен");
         model.addAttribute("success", true);
         return "/admin/addUser";
@@ -45,5 +47,24 @@ public class UserController {
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
         return "/admin/allUsers";
+    }
+
+    @GetMapping("/editUser/{id}")
+    public String getEditUserPage(@PathVariable("id") Long id, ModelMap model) {
+        User user = userRepository.findById(id).get();
+        model.addAttribute("user", user);
+        return "/admin/editUser";
+    }
+
+    @PostMapping("/editUser")
+    public String editUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult bindingResult, ModelMap modelMap) {
+        if (bindingResult.hasErrors()) {
+            modelMap.addAttribute("success", false);
+            modelMap.addAttribute("message",  "Заполните все поля!");
+            return "/admin/editUser";
+        }
+
+        userService.editUser(userDTO);
+        return "redirect:/admin/allUsers";
     }
 }
