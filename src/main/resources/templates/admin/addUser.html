@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>Добавление пользователя</h2>
-<form th:action="@{/admin/addUser}" method="POST" th:object="${userDTO}">
+<form th:action="@{/admin/user/add}" method="POST" th:object="${userDTO}">
     <div class="container">
         <div class="form-group">
             <label for="add-user-name">Имя</label>

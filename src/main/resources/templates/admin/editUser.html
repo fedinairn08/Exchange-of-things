@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form th:action="@{/admin/editUser}" method="POST" th:object="${user}">
+<form th:action="@{/admin/user/edit}" method="POST" th:object="${user}">
     <div class="container">
         <input type="hidden" th:field="*{id}"/>
         <div class="form-group">
@@ -43,7 +43,7 @@
                    placeholder="Ваш пароль.."  th:value="*{password}">
         </div>
         <button type="submit" name="edit-user-button" class="btn btn-primary">Сохранить изменения</button>
-        <a th:href="@{/admin/allUsers}" class="btn btn-default">Отмена</a>
+        <a th:href="@{/admin/user/all}" class="btn btn-default">Отмена</a>
     </div>
 </form>
 <div th:if="${message}" style="margin-top: 10px;" th:style="${success}? 'color: green;' : 'color: red;'">

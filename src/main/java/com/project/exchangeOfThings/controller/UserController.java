@@ -23,12 +23,12 @@ public class UserController {
     private final ModelMapper modelMapper;
     private final UserService userService;
 
-    @GetMapping("/addUser")
+    @GetMapping("/user/add")
     public Object getAddUserPage() {
         return new ModelAndView("admin/addUser");
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/user/add")
     public String addUser(@Valid UserDTO userDTO, BindingResult bindingResult, ModelMap model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("success", false);
@@ -42,21 +42,21 @@ public class UserController {
         return "/admin/addUser";
     }
 
-    @GetMapping("/allUsers")
+    @GetMapping("/user/all")
     public String showAllUsers(ModelMap model) {
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
         return "/admin/allUsers";
     }
 
-    @GetMapping("/editUser/{id}")
+    @GetMapping("/user/edit/{id}")
     public String getEditUserPage(@PathVariable("id") Long id, ModelMap model) {
         User user = userRepository.findById(id).get();
         model.addAttribute("user", user);
         return "/admin/editUser";
     }
 
-    @PostMapping("/editUser")
+    @PostMapping("/user/edit")
     public String editUser(@Valid @ModelAttribute("user") UserDTO userDTO, BindingResult bindingResult, ModelMap modelMap) {
         if (bindingResult.hasErrors()) {
             modelMap.addAttribute("success", false);
@@ -65,6 +65,12 @@ public class UserController {
         }
 
         userService.editUser(userDTO);
-        return "redirect:/admin/allUsers";
+        return "redirect:/admin/user/all";
+    }
+
+    @GetMapping("/user/delete/{id}")
+    public String deleteUser(@PathVariable("id") Long id) {
+        userRepository.deleteById(id);
+        return "forward:/admin/user/all";
     }
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 <h2>Список пользователей</h2>
-<form th:action="@{/admin/allUsers}" method="GET">
+<form th:action="@{/admin/user/all}" method="GET">
 <table class="table table-striped" th:if="${not #lists.isEmpty(users)}">
     <thead>
     <tr>
@@ -26,8 +26,11 @@
         <td th:text="${user.role.getRussianName}"></td>
         <td th:text="${user.login}"></td>
         <td>
-            <a th:href="@{/admin/editUser/{id}(id=${user.id})}" class="btn btn-default btn-sm">
+            <a th:href="@{/admin/user/edit/{id}(id=${user.id})}" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-pencil"></span> Редактировать
+            </a>
+            <a th:href="@{/admin/user/delete/{id}(id=${user.id})}" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-pencil"></span> Удалить
             </a>
         </td>
     </tr>

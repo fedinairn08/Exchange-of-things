@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Список вещей</title>
+    <title>Вещи всех пользователей</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
-<h2>Список вещей</h2>
-<form th:action="@{/user/thing/all}" method="GET">
+<form th:action="@{/moder/thing/all}" method="GET">
     <table class="table table-striped" th:if="${not #lists.isEmpty(things)}">
         <thead>
         <tr>
             <th>Название</th>
             <th>Статус</th>
             <th>Описание</th>
+            <th>Пользователь</th>
             <th>Количество просмотров</th>
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +24,13 @@
             <td th:text="${thing.name}"></td>
             <td th:text="${thing.thingStatus.russianName}"></td>
             <td th:text="${thing.description}"></td>
+            <td th:text="${thing.user.name}"></td>
             <td th:text="${thing.numberOfViews}"></td>
+            <td>
+                <a th:href="@{/moder/thing/delete/{id}(id=${thing.id})}" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-pencil"></span> Удалить
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>

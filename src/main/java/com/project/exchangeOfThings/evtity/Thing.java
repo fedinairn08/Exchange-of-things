@@ -27,4 +27,8 @@ public class Thing {
     private String description;
 
     private Integer numberOfViews;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

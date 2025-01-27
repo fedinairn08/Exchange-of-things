@@ -8,7 +8,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<form th:action="@{/user/addThing}" method="POST" th:object="${thingDTO}">
+<form th:action="@{/user/thing/add}" method="POST" th:object="${thingDTO}">
     <div class="container">
         <div class="form-group">
             <label for="add-thing-name">Название</label>

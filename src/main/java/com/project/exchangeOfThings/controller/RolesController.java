@@ -6,17 +6,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class RolesController {
-    @GetMapping("/admin/adminPage")
+    @GetMapping("/page/admin")
     public Object getAdminPage() {
         return new ModelAndView("admin/adminPage");
     }
 
-    @GetMapping("/moder/moderPage")
+    @GetMapping("/page/moder")
     public Object getModerPage() {
         return new ModelAndView("moder/moderPage");
     }
 
-    @GetMapping("/user/userPage")
+    @GetMapping("/page/user")
     public Object getUserPage() {
         return new ModelAndView("user/userPage");
     }
